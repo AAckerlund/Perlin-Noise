@@ -1,0 +1,1 @@
+This python project implements a seeded, tileable version of perlin noise

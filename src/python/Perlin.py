@@ -89,7 +89,7 @@ def PerlinNoise1D(octaves, noise, scaleBias):
 
 
 def main():
-    frame = makeFrame(900, 900)
+    frame = makeFrame(400, 400)
     seed = random.randint(0, 2147483647)
 
     print("Generating Seed Noise with seed", seed)
