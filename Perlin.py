@@ -2,42 +2,49 @@ import turtle
 import random
 
 
-def drawNoise(noise, width):
-    t = turtle.Turtle()
-    turtle.tracer(0)
-
-    t.penup()
-    t.begin_fill()
-    t.goto(0 - width, 0)
-    t.pendown()
+def drawNoise(noise, width, height):
+    width = int(width / 2)
+    height = int(height / 2)
+    t = setupTurtle(width)
 
     for i in range(len(noise)):
+        colorNum = noise[i]
+        t.pencolor(colorNum, colorNum, colorNum)
+        t.goto(i - width, noise[i] * 255)
+        t.goto(i - width, -height)
         t.goto(i - width, noise[i] * 255)
 
     t.goto(len(noise) - width - 1, 0)
     t.goto(0 - width, 0)
-    t.end_fill()
 
     turtle.mainloop()
+
+
+def setupTurtle(width):
+    t = turtle.Turtle()
+    turtle.tracer(0)
+
+    t.penup()
+    t.goto(0 - width, 0)
+    t.pendown()
+
+    return t
 
 
 def makeFrame():
     frame = turtle.Screen()
     frame.screensize(300, 300)
-    # print(frame.canvheight, frame.canvwidth)
     return frame
 
 
 def genNoise(frame):
-    print("Noise Generation")
     noise = []
-    for i in range(frame.canvwidth):  # * frame.canvheight):
+    for i in range(frame.window_width()):  # * frame.canvheight):
         noise.append(random.random())
     return noise
 
 
 def PerlinNoise1D(octaves, noise, scaleBias):
-    print("1D Perlin Noise")
     perlinNoise = []
     for i in range(len(noise)):
         noiseFloat = 0.0
@@ -65,7 +72,7 @@ def main():
     frame = makeFrame()
     noise = genNoise(frame)
     perlinNoise = PerlinNoise1D(4, noise, 2.0)
-    drawNoise(perlinNoise, frame.canvwidth)
+    drawNoise(perlinNoise, frame.window_width(), frame.window_height())
 
 
 main()
