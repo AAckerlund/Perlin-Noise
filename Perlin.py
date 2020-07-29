@@ -37,8 +37,9 @@ def makeFrame():
     return frame
 
 
-def genNoise(frame):
+def genNoise(frame, seed):
     noise = []
+    random.seed(seed)
     for i in range(frame.window_width()):  # * frame.canvheight):
         noise.append(random.random())
     return noise
@@ -70,7 +71,8 @@ def PerlinNoise1D(octaves, noise, scaleBias):
 
 def main():
     frame = makeFrame()
-    noise = genNoise(frame)
+    seed = random.randint(0, 2147483647)
+    noise = genNoise(frame, seed)
     perlinNoise = PerlinNoise1D(4, noise, 2.0)
     drawNoise(perlinNoise, frame.window_width(), frame.window_height())
 
