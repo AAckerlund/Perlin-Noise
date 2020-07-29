@@ -51,11 +51,10 @@ public class Driver extends JPanel implements ActionListener
      */
     public void initFrameComponents()
     {
-
         mainFrame = new JFrame("Perlin Noise");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.add(this);
-        mainFrame.setSize(600, 600);
+        mainFrame.setSize(400, 400);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
 
@@ -333,5 +332,4 @@ public class Driver extends JPanel implements ActionListener
     {
         new Driver();
     }
-
 }
